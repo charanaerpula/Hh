@@ -8,6 +8,11 @@ app = Flask(__name__)
 
 OUTPUT_DIR = Path.cwd()
 
+
+@app.route('/health')
+def health():
+    return {'status': 'ok'}
+
 @app.route('/')
 def index():
     jobs = list_jobs()
