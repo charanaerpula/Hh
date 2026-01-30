@@ -61,7 +61,8 @@ def download(job_id):
     path = Path(job['path'])
     if not path.exists():
         return "File missing", 404
-    return send_from_directory(directory=str(path.parent), filename=path.name, as_attachment=True)
+    # Flask's send_from_directory signature is (directory, path, **kwargs)
+    return send_from_directory(str(path.parent), path.name, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
