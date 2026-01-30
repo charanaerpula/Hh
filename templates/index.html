@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OU Results - Submit Job</title>
+  </head>
+  <body>
+    <h1>Submit Scrape Job</h1>
+    <form action="/start" method="post">
+      <label>Exam URL: <input name="url" size="80" required></label><br>
+      <label>Start HT: <input name="start" required></label><br>
+      <label>End HT: <input name="end" required></label><br>
+      <label>Output file: <input name="output" value="ou_results.xlsx"></label><br>
+      <label>Protect password (optional): <input name="protect"></label><br>
+      <button type="submit">Start</button>
+    </form>
+
+    <h2>Recent jobs</h2>
+    <ul>
+      {% for job in jobs %}
+        <li>
+          <a href="/status/{{job.id}}">{{job.id}}</a> — {{job.status}} — {{job.progress.done}}/{{job.progress.total}} — {{job.output}}
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
