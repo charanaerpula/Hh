@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Job {{job.id}}</title>
+  </head>
+  <body>
+    <h1>Job {{job.id}}</h1>
+    <p>Status: {{job.status}}</p>
+    <p>Progress: {{job.progress.done}} / {{job.progress.total}}</p>
+    {% if job.status == 'done' %}
+      <p><a href="/download/{{job.id}}">Download {{job.output}}</a></p>
+    {% elif job.status == 'failed' %}
+      <p>Error: {{job.error}}</p>
+    {% endif %}
+
+    <p><a href="/">Back</a></p>
+  </body>
+</html>
